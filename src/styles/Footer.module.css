@@ -1,0 +1,30 @@
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.footer:hover {
+    transform: translateY(-2px);
+}
+
+.text {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
