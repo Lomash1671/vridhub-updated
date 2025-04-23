@@ -1,0 +1,151 @@
+:root {
+  --primary-color: #671d80;
+  --primary-hover: #5c2a7f;
+  --error-color: #e53935;
+  --error-hover: #c62828;
+  --light-bg: #f8f9fa;
+  --text-color: #333;
+  --card-bg: #ffffff;
+  --shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+  --font-size-lg: 1.3rem;
+  --font-size-md: 1.1rem;
+  --font-size-sm: 1rem;
+}
+
+body {
+  background-color: var(--light-bg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: var(--font-size-md);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.doctor-main {
+  min-height: 80vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Button layout container */
+.doctor-buttons-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Go back button on top-left */
+.go-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: var(--font-size-sm);
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-transform: none;
+  transition: background 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.go-back:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Add Doctor Button Centered */
+.center-button {
+  text-align: center;
+}
+
+/* Main container for doctor list */
+.doctor-container {
+  width: 95%;
+  max-width: 800px;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+/* Title style */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+}
+
+/* Doctor card layout */
+.doctor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.doctor-card {
+  padding: 20px;
+  border-radius: var(--border-radius);
+  background-color: #f1effa;
+  border: 1px solid #d1c4e9;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.doctor-card h5 {
+  color: var(--primary-color);
+  font-size: var(--font-size-lg);
+  margin-bottom: 8px;
+}
+
+.doctor-card p {
+  margin: 4px 0;
+  font-size: var(--font-size-sm);
+}
+
+/* Dialog form layout */
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+  .doctor-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doctor-buttons-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .go-back {
+    position: relative;
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .center-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-primary,
+  .btn-danger {
+    width: 100%;
+  }
+}

@@ -1,9 +1,10 @@
-import React from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import prescriptionImg from '../../assets/pres.jpg'; // Adjust the image path
 import doctorImg from '../../assets/directory.jpg';  // Adjust the image path
 import { Helmet } from 'react-helmet';
 import Footer from '../Footer';
+import '../../styles/health/Health.css';
+
 
 // Tile data array
 const tilesData = [
@@ -22,10 +23,10 @@ const tilesData = [
 ];
 
 const Health = () => {
-  const navigate = useNavigate(); // Hook to navigate programmatically
+  const navigate = useNavigate();
 
   const handleTileClick = (link) => {
-    navigate(link); // Navigate to the link passed when tile is clicked
+    navigate(link);
   };
 
   return (
@@ -33,28 +34,16 @@ const Health = () => {
       <Helmet>
         <title>Health</title>
       </Helmet>
-      <div className="container text-center mt-4" style={{ fontFamily: 'Times New Roman, serif' }}>
-        <h1 className="display-4 font-weight-bold">Comprehensive Elder Care</h1>
 
-        <div className="row justify-content-center mt-5">
+      <div className="health-container">
+        <h1 className="health-title">Comprehensive Elder Care</h1>
+
+        <div className="health-row">
           {tilesData.map((tile, index) => (
-            <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
-              <div
-                className="card h-100 shadow-sm"
-                onClick={() => handleTileClick(tile.link)}
-                style={{ cursor: 'pointer', transition: 'transform 0.3s ease' }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              >
-                <img
-                  src={tile.imgSrc}
-                  alt={tile.alt}
-                  className="card-img-top img-fluid"
-                  style={{ height: '200px', objectFit: 'cover', transition: 'transform 0.3s ease' }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title" style={{ transition: 'color 0.3s ease' }}>{tile.title}</h5>
-                </div>
+            <div className="health-card" key={index} onClick={() => handleTileClick(tile.link)}>
+              <img src={tile.imgSrc} alt={tile.alt} />
+              <div className="card-body">
+                <h5 className="card-title">{tile.title}</h5>
               </div>
             </div>
           ))}
@@ -62,6 +51,7 @@ const Health = () => {
 
         <Outlet />
       </div>
+
       <Footer />
     </>
   );

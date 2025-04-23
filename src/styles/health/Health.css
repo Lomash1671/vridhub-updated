@@ -1,0 +1,76 @@
+/* Health.css */
+.health-container {
+    font-family: 'Poppins', sans-serif;
+    padding: 2rem;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    min-height: 100vh;
+  }
+  
+  .health-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #4a148c;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .health-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #ba68c8;
+    margin: 0.5rem auto 0;
+    border-radius: 5px;
+  }
+  
+  .health-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .health-card {
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 280px;
+  }
+  
+  .health-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(74, 20, 140, 0.2);
+  }
+  
+  .health-card img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .health-card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .health-card .card-body {
+    padding: 1.2rem;
+    text-align: center;
+  }
+  
+  .health-card .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4a148c;
+    transition: color 0.3s ease;
+  }
+  
+  .health-card:hover .card-title {
+    color: #ba68c8;
+  }
+  
