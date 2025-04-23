@@ -1,0 +1,513 @@
+/* === CUSTOM PROPERTIES === */
+:root {
+    /* Shared Colors */
+    --bg-dark: #0d1b2a;
+    --bg-light: #1b263b;
+    --text-light: #e0e0e0;
+    --text-white: #ffffff;
+    /* Carpool Colors */
+    --primary-blue: #00b4d8;
+    --dark-blue: #0077b6;
+    --neon-blue: #48cae4;
+    --primary-orange: #ff6d00;
+    --dark-orange: #d00000;
+    --neon-orange: #ff9e00;
+    --shadow-blue: rgba(0, 180, 216, 0.5);
+    --shadow-orange: rgba(255, 110, 0, 0.5);
+    /* Transport Colors */
+    --primary-purple: #7b2cbf;
+    --dark-purple: #3c096c;
+    --neon-purple: #c77dff;
+    --primary-green: #06d6a0;
+    --neon-green: #1dd3b0;
+    --silver: #adb5bd;
+    --shadow-purple: rgba(123, 44, 191, 0.5);
+    --shadow-green: rgba(6, 214, 160, 0.5);
+}
+
+/* === TRANSPORT STYLES === */
+.transport-container {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    margin: 2rem auto;
+    padding: 0 15px;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    color: var(--text-white);
+}
+
+/* Starry Background Animation */
+.transport-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: twinkle 10s infinite;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.transport-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, var(--primary-purple), var(--neon-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px var(--shadow-purple);
+    margin-bottom: 3rem;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 15px var(--shadow-purple); }
+    50% { text-shadow: 0 0 25px var(--shadow-purple), 0 0 35px var(--shadow-green); }
+    100% { text-shadow: 0 0 15px var(--shadow-purple); }
+}
+
+.tile-card {
+    background: linear-gradient(135deg, var(--dark-purple), var(--bg-dark));
+    border: 2px solid transparent;
+    border-radius: 12px;
+    box-shadow: 0 0 15px var(--shadow-purple);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tile-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 25px var(--shadow-green), 0 0 35px var(--shadow-purple);
+    border-image: linear-gradient(45deg, var(--neon-purple), var(--neon-green)) 1;
+}
+
+.tile-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
+}
+
+.tile-card:active::after {
+    width: 400px;
+    height: 400px;
+}
+
+.tile-img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    transition: transform 0.3s ease;
+    filter: brightness(0.9);
+}
+
+.tile-card:hover .tile-img {
+    transform: scale(1.1);
+    filter: brightness(1);
+}
+
+.tile-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--shadow-green);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    padding: 1rem;
+}
+
+.tile-card:hover .tile-title {
+    color: var(--neon-purple);
+    text-shadow: 0 0 15px var(--shadow-purple);
+}
+
+/* === CARPOOL STYLES === */
+html {
+    scroll-behavior: smooth;
+}
+
+.carpool-container {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    color: var(--text-light);
+    font-size: 22px;
+    line-height: 1.7;
+    min-width: 320px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.carpool-header {
+    background: linear-gradient(90deg, var(--primary-blue), var(--dark-blue));
+    color: var(--text-white);
+    text-align: center;
+    padding: 30px;
+    font-size: 38px;
+    box-shadow: 0 0 20px var(--shadow-blue);
+    border-radius: 0 0 12px 12px;
+}
+
+.carpool-nav {
+    background: var(--bg-light);
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(0, 119, 182, 0.3);
+}
+
+.carpool-nav a {
+    color: var(--primary-blue);
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.carpool-nav a:hover {
+    background: var(--dark-blue);
+    color: var(--text-white);
+    box-shadow: 0 0 10px var(--shadow-blue);
+    transform: scale(1.05);
+}
+
+.carpool-hero {
+    background: linear-gradient(45deg, #023e8a, var(--primary-blue));
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+    height: 320px;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 2px 2px 8px #000;
+    font-size: 38px;
+    box-shadow: 0 0 25px var(--shadow-blue);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.carpool-content {
+    background: rgba(27, 38, 59, 0.9);
+    margin: 30px auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 119, 182, 0.4);
+    max-width: 900px;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.carpool-features {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.carpool-join {
+    flex: 1;
+    padding: 25px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-blue), #023e8a);
+    border: 2px solid var(--neon-blue);
+    border-radius: 12px;
+    box-shadow: 0 0 15px var(--shadow-blue);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carpool-join:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--shadow-blue);
+}
+
+.carpool-offer {
+    flex: 1;
+    padding: 25px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
+    border: 2px solid var(--neon-orange);
+    border-radius: 12px;
+    box-shadow: 0 0 15px var(--shadow-orange);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carpool-offer:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--shadow-orange);
+}
+
+.carpool-feature-image,
+.join-image,
+.offer-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.join-image {
+    background-image: url('https://via.placeholder.com/400x225?text=Join+Carpool');
+}
+
+.offer-image {
+    background-image: url('https://via.placeholder.com/400x225?text=Offer+Ride');
+}
+
+.carpool-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === INPUT STYLES === */
+.carpool-join input,
+.carpool-join input[type="date"],
+.carpool-join input[type="time"] {
+    font-size: 18px;
+    padding: 14px;
+    width: 100%;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box, linear-gradient(45deg, var(--primary-blue), var(--neon-blue)) border-box;
+    color: var(--text-white);
+    box-shadow: inset 0 0 8px var(--shadow-blue);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.carpool-join input:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--shadow-blue), inset 0 0 10px var(--shadow-blue);
+    background: linear-gradient(rgba(0, 180, 216, 0.1), rgba(0, 180, 216, 0.1)) padding-box, linear-gradient(45deg, var(--primary-blue), var(--neon-blue)) border-box;
+}
+
+.carpool-offer input,
+.carpool-offer input[type="date"],
+.carpool-offer input[type="time"] {
+    font-size: 18px;
+    padding: 14px;
+    width: 100%;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box, linear-gradient(45deg, var(--primary-orange), var(--neon-orange)) border-box;
+    color: var(--text-white);
+    box-shadow: inset 0 0 8px var(--shadow-orange);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.carpool-offer input:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--shadow-orange), inset 0 0 10px var(--shadow-orange);
+    background: linear-gradient(rgba(255, 110, 0, 0.1), rgba(255, 110, 0, 0.1)) padding-box, linear-gradient(45deg, var(--primary-orange), var(--neon-orange)) border-box;
+}
+
+input::placeholder {
+    color: #b0c4de;
+    opacity: 1;
+}
+
+/* === BUTTON STYLES === */
+button {
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    padding: 14px 24px;
+    margin: 12px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.join-button {
+    background: linear-gradient(45deg, var(--dark-blue), var(--primary-blue));
+    color: var(--text-white);
+    box-shadow: 0 0 12px var(--shadow-blue);
+}
+
+.join-button:hover {
+    background: linear-gradient(45deg, var(--primary-blue), var(--neon-blue));
+    box-shadow: 0 0 20px var(--shadow-blue);
+    transform: scale(1.05);
+}
+
+.join-button:active {
+    transform: scale(0.95);
+}
+
+.join-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
+}
+
+.join-button:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.offer-button {
+    background: linear-gradient(45deg, var(--dark-orange), var(--primary-orange));
+    color: var(--text-white);
+    box-shadow: 0 0 12px var(--shadow-orange);
+}
+
+.offer-button:hover {
+    background: linear-gradient(45deg, var(--primary-orange), var(--neon-orange));
+    box-shadow: 0 0 20px var(--shadow-orange);
+    transform: scale(1.05);
+}
+
+.offer-button:active {
+    transform: scale(0.95);
+}
+
+.offer-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
+}
+
+.offer-button:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.carpool-footer {
+    text-align: center;
+    padding: 25px;
+    background: linear-gradient(90deg, var(--bg-light), var(--bg-dark));
+    color: var(--text-light);
+    margin-top: 40px;
+    font-size: 20px;
+    box-shadow: 0 0 15px rgba(0, 119, 182, 0.3);
+}
+
+/* === LARGER TEXT === */
+.carpool-container.larger-text,
+.carpool-container.larger-text input,
+.carpool-container.larger-text button,
+.carpool-container.larger-text label,
+.carpool-container.larger-text h1,
+.carpool-container.larger-text h2,
+.carpool-container.larger-text h3,
+.carpool-container.larger-text .carpool-nav a,
+.carpool-container.larger-text .carpool-footer {
+    font-size: 26px !important;
+}
+
+.carpool-container.larger-text {
+    line-height: 1.8;
+}
+
+/* === TOGGLE BUTTON STYLES === */
+button.active {
+    background: var(--primary-blue);
+    color: var(--text-white);
+    box-shadow: 0 0 15px var(--shadow-blue);
+}
+
+/* === ADDITIONAL ACCESSIBILITY STYLES === */
+input:focus, button:focus, .tile-card:focus {
+    outline: 3px solid var(--neon-purple);
+    outline-offset: 2px;
+    box-shadow: 0 0 10px var(--shadow-purple);
+}
+
+input[required], button[required] {
+    border: 3px solid var(--neon-orange);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 600px) {
+    .transport-container {
+        margin: 1rem auto;
+    }
+    .transport-title {
+        font-size: 2.5rem;
+    }
+    .tile-card {
+        margin-bottom: 1.5rem;
+    }
+    .carpool-header {
+        font-size: 32px;
+        padding: 20px;
+    }
+    .carpool-nav a {
+        display: block;
+        margin: 10px 0;
+        font-size: 18px;
+    }
+    .carpool-content {
+        margin: 15px;
+        padding: 20px;
+    }
+    .carpool-features {
+        flex-direction: column;
+    }
+    .carpool-hero {
+        font-size: 32px;
+        height: 250px;
+    }
+}
