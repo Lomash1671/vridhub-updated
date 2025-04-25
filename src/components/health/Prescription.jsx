@@ -9,12 +9,11 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-
 } from '@mui/material';
 import { Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { ArrowBack } from '@mui/icons-material'; // Add the back arrow icon
+import { ArrowBack } from '@mui/icons-material';
 import '../../styles/health/Prescription.css';
 
 const Prescription = () => {
@@ -143,7 +142,7 @@ const Prescription = () => {
           <ArrowBack className="back-arrow-icon" />
         </Button>
 
-        <div className="center-button">
+        <div className="prescription-button-wrapper">
           <Button
             variant="contained"
             className="futuristic-btn"
@@ -155,9 +154,9 @@ const Prescription = () => {
 
         <div className="prescription-container">
           <h2 className="section-title">View Your Prescriptions</h2>
-          <div className="doctor-list">
+          <div className="prescription-list">
             {prescriptions.map((prescription) => (
-              <div key={prescription.id} className="doctor-card">
+              <div key={prescription.id} className="prescription-card">
                 <div>
                   <h5>{prescription.file}</h5>
                   <p>
