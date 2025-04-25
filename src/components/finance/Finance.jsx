@@ -2,7 +2,6 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import billmanagement from '../../assets/billmanagement.jpeg';
 import balanceImg from '../../assets/balance.png';
 import { Helmet } from 'react-helmet';
-import Footer from '../Footer';
 import '../../styles/finance/Finance.css';
 
 const tilesData = [
@@ -80,7 +79,7 @@ const Finance = () => {
       </div>
       
       <Outlet />
-      <Footer />
+      
     </div>
   );
 };

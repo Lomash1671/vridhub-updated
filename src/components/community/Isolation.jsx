@@ -1,9 +1,9 @@
-import React from 'react';
+
 import { useNavigate, Outlet } from 'react-router-dom';
 import meetingImg from '../../assets/community.webp'; // Adjust the image path
 import inter from '../../assets/intergerenationalmeetups.jpeg';  // Adjust the image path
 import { Helmet } from 'react-helmet';
-import Footer from '../Footer';
+
 
 // Tile data array
 const tilesData = [
@@ -62,7 +62,7 @@ const Isolation = () => {
 
       <Outlet />
     </div>
-    <Footer />
+    
     </>
   );
 };

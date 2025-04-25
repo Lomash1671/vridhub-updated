@@ -66,9 +66,8 @@ const Home = () => {
           ))}
         </section>
 
-        <footer className="footer">
-          <p>Designed By: Lomash Gupta</p>
-        </footer>
+       
+        
       </div>
     </>
   );

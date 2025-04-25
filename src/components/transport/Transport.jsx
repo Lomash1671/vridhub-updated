@@ -2,7 +2,6 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import bookingImg from '../../assets/transportbooking.jpeg';
 import carpoolingImg from '../../assets/carpooling2.jpeg';
 import { Helmet } from 'react-helmet';
-import Footer from '../Footer';
 import '../../styles/transport/Transport.css';
 
 const tilesData = [
@@ -48,7 +47,7 @@ const Transport = () => {
         </div>
         <Outlet />
       </div>
-      <Footer />
+      
     </>
   );
 };

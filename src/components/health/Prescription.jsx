@@ -9,11 +9,12 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  Box,
+
 } from '@mui/material';
 import { Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { ArrowBack } from '@mui/icons-material'; // Add the back arrow icon
 import '../../styles/health/Prescription.css';
 
 const Prescription = () => {
@@ -137,9 +138,9 @@ const Prescription = () => {
           variant="outlined"
           color="secondary"
           onClick={handleBack}
-          className="go-back futuristic-btn"
+          className="go-back-btn futuristic-btn"
         >
-          <span>Go Back</span>
+          <ArrowBack className="back-arrow-icon" />
         </Button>
 
         <div className="center-button">

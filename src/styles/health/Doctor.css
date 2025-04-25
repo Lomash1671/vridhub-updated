@@ -1,89 +1,68 @@
 :root {
-  --primary-color: #671d80;
-  --primary-hover: #5c2a7f;
-  --error-color: #e53935;
-  --error-hover: #c62828;
-  --light-bg: #f8f9fa;
-  --text-color: #333;
-  --card-bg: #ffffff;
-  --shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  --border-radius: 12px;
-  --font-size-lg: 1.3rem;
-  --font-size-md: 1.1rem;
-  --font-size-sm: 1rem;
+  --health-primary: #7ec8e3;       /* Soft sky blue */
+  --health-accent: #a3d9c9;        /* Minty green */
+  --health-focus: #4db6ac;         /* Accent for focus */
+  --health-bg: #f0faff;            /* Very soft background */
+  --health-card: #ffffff;
+  --health-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --health-radius: 16px;
+  --text-dark: #2f3e46;
+  --text-light: #607d8b;
+  --font-lg: 1.5rem;
+  --font-md: 1rem;
+  --font-sm: 0.9rem;
 }
 
 body {
-  background-color: var(--light-bg);
+  background-color: var(--health-bg);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: var(--font-size-md);
-  color: var(--text-color);
-  line-height: 1.6;
+  font-size: var(--font-md);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
 }
 
 .doctor-main {
-  min-height: 80vh;
-  padding: 20px;
+  min-height: 100vh;
+  padding: 4rem 1rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-/* Button layout container */
-.doctor-buttons-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  background-color: var(--health-bg);
   position: relative;
-  margin-bottom: 20px;
 }
 
-/* Go back button on top-left */
-.go-back {
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: var(--primary-color);
-  color: #fff;
-  font-size: var(--font-size-sm);
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-transform: none;
-  transition: background 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.go-back:hover {
-  background-color: var(--primary-hover);
-}
-
-/* Add Doctor Button Centered */
-.center-button {
-  text-align: center;
-}
-
-/* Main container for doctor list */
-.doctor-container {
-  width: 95%;
-  max-width: 800px;
-  background-color: var(--card-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  padding: 30px;
-  margin-bottom: 20px;
-}
-
-/* Title style */
+/* Section Title */
 .section-title {
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 700;
   text-align: center;
-  color: var(--primary-color);
-  margin-bottom: 25px;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  position: relative;
 }
 
-/* Doctor card layout */
+.section-title::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background-color: var(--health-accent);
+  display: block;
+  margin: 0.5rem auto 0;
+  border-radius: 4px;
+}
+
+/* Doctor Container */
+.doctor-container {
+  background: var(--health-card);
+  border-radius: var(--health-radius);
+  box-shadow: var(--health-shadow);
+  padding: 2rem;
+  max-width: 800px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .doctor-list {
   display: flex;
   flex-direction: column;
@@ -91,28 +70,66 @@ body {
 }
 
 .doctor-card {
-  padding: 20px;
-  border-radius: var(--border-radius);
-  background-color: #f1effa;
-  border: 1px solid #d1c4e9;
+  background: var(--health-card);
+  border-radius: var(--health-radius);
+  box-shadow: var(--health-shadow);
+  padding: 2rem;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(126, 200, 227, 0.2);
 }
 
 .doctor-card h5 {
-  color: var(--primary-color);
-  font-size: var(--font-size-lg);
-  margin-bottom: 8px;
+  color: var(--health-primary);
+  font-size: var(--font-lg);
+  margin-bottom: 4px;
 }
 
 .doctor-card p {
-  margin: 4px 0;
-  font-size: var(--font-size-sm);
+  margin: 2px 0;
+  font-size: var(--font-sm);
+  color: var(--text-light);
 }
 
-/* Dialog form layout */
+/* Buttons Section */
+.doctor-buttons-wrapper {
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Add Doctor Button */
+.center-button {
+  margin-top: 3rem;
+}
+
+.center-button button {
+  background: linear-gradient(135deg, var(--health-primary), var(--health-accent));
+  color: #fff;
+  font-size: var(--font-md);
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 3px 12px rgba(126, 200, 227, 0.4);
+  transition: background 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.center-button button:hover {
+  background: linear-gradient(135deg, #65b3ce, #90d8c5);
+  transform: translateY(-2px);
+}
+
+/* Dialog Form Styling */
 .dialog-form {
   display: flex;
   flex-direction: column;
@@ -120,30 +137,110 @@ body {
   margin-top: 10px;
 }
 
-/* Responsive styling */
+.dialog-form label {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.dialog-form input,
+.dialog-form textarea {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid #d0e6f0;
+  border-radius: 12px;
+  font-size: var(--font-sm);
+  background-color: #fefefe;
+  transition: border-color 0.3s ease;
+}
+
+.dialog-form input:focus,
+.dialog-form textarea:focus {
+  border-color: var(--health-focus);
+  outline: none;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--health-primary), var(--health-accent));
+  color: #fff;
+  padding: 0.9rem 2rem;
+  font-size: var(--font-md);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 3px 12px rgba(126, 200, 227, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #65b3ce, #90d8c5);
+  transform: translateY(-2px);
+}
+
+/* Danger Button */
+.btn-danger {
+  background-color: #e53935;
+  color: #fff;
+  padding: 0.9rem 2rem;
+  font-size: var(--font-md);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c62828;
+  transform: translateY(-2px);
+}
+
+/* Go Back Button */
+.go-back-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  border: 2px solid var(--health-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.go-back-btn:hover {
+  background: var(--health-primary);
+  border-color: var(--health-accent);
+  transform: scale(1.1);
+}
+
+.back-arrow-icon {
+  font-size: 24px;
+  color: var(--health-primary);
+  transition: color 0.3s ease;
+}
+
+.go-back-btn:hover .back-arrow-icon {
+  color: #fff;
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
   .doctor-card {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 1.5rem;
   }
 
-  .doctor-buttons-wrapper {
-    flex-direction: column;
-    align-items: center;
+  .section-title {
+    font-size: 2rem;
   }
 
-  .go-back {
-    position: relative;
-    align-self: flex-start;
-    margin-bottom: 10px;
-  }
-
-  .center-button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
+  .center-button button,
   .btn-primary,
   .btn-danger {
     width: 100%;

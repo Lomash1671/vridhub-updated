@@ -88,8 +88,8 @@ const Doctor = () => {
         )}
 
         <div className="doctor-buttons-wrapper">
-          <button className="btn-primary go-back" onClick={handleBack}>
-            ← Go Back
+          <button className=" go-back" onClick={handleBack}>
+            ← 
           </button>
           <div className="center-button">
             <Button
