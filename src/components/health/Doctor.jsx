@@ -13,6 +13,7 @@ import {
 import { Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { ArrowBack } from '@mui/icons-material';
 import '../../styles/health/Doctor.css';
 
 const Doctor = () => {
@@ -29,7 +30,10 @@ const Doctor = () => {
 
   useEffect(() => {
     const fetchDoctors = async () => {
-      const { data, error } = await supabase.from('doctors').select('*').order('created_at', { ascending: false });
+      const { data, error } = await supabase
+        .from('doctors')
+        .select('*')
+        .order('created_at', { ascending: false });
       if (error) {
         console.error('Error fetching doctors:', error);
       } else {
@@ -48,9 +52,9 @@ const Doctor = () => {
     }
 
     setLoading(true);
-    const { data, error } = await supabase.from('doctors').insert([
-      { name, address, specialization, contact }
-    ]);
+    const { data, error } = await supabase
+      .from('doctors')
+      .insert([{ name, address, specialization, contact }]);
 
     if (error) {
       console.error('Error adding doctor:', error);
@@ -87,20 +91,23 @@ const Doctor = () => {
           </Spinner>
         )}
 
-        <div className="doctor-buttons-wrapper">
-          <button className=" go-back" onClick={handleBack}>
-            ← 
-          </button>
-          <div className="center-button">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleOpenDialog}
-              sx={{ fontSize: '1.1rem', padding: '10px 30px' }}
-            >
-              + Add Doctor
-            </Button>
-          </div>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={handleBack}
+          className="go-back-btn futuristic-btn"
+        >
+          <ArrowBack className="back-arrow-icon" />
+        </Button>
+
+        <div className="doctor-button-wrapper">
+          <Button
+            variant="contained"
+            className="futuristic-btn"
+            onClick={handleOpenDialog}
+          >
+            <span>Add Doctor</span>
+          </Button>
         </div>
 
         <div className="doctor-container">

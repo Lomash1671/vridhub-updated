@@ -97,7 +97,8 @@ body {
   color: var(--text-light);
 }
 
-/* Buttons Section */
+/* Buttons Section (Commented out as no longer used) */
+/*
 .doctor-buttons-wrapper {
   width: 100%;
   margin-bottom: 30px;
@@ -106,7 +107,6 @@ body {
   align-items: center;
 }
 
-/* Add Doctor Button */
 .center-button {
   margin-top: 3rem;
 }
@@ -127,6 +127,29 @@ body {
 .center-button button:hover {
   background: linear-gradient(135deg, #65b3ce, #90d8c5);
   transform: translateY(-2px);
+}
+*/
+
+.doctor-button-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.futuristic-btn {
+  background-color: var(--health-primary);
+  color: white;
+  border-radius: 30px;
+  padding: 0.8rem 2rem;
+  font-size: var(--font-md);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.futuristic-btn:hover {
+  background-color: #60b3d1;
 }
 
 /* Dialog Form Styling */
