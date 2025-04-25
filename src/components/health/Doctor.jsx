@@ -91,6 +91,7 @@ const Doctor = () => {
           </Spinner>
         )}
 
+        {/* Go Back Button: Exact copy from Prescription.jsx */}
         <Button
           variant="outlined"
           color="secondary"
@@ -100,7 +101,8 @@ const Doctor = () => {
           <ArrowBack className="back-arrow-icon" />
         </Button>
 
-        <div className="doctor-button-wrapper">
+        {/* Add Doctor Button: Exact copy from Prescription.jsx */}
+        <div className="prescription-button-wrapper">
           <Button
             variant="contained"
             className="futuristic-btn"
