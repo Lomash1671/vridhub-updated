@@ -133,14 +133,10 @@ const Prescription = () => {
           </Spinner>
         )}
 
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={handleBack}
-          className="go-back-btn futuristic-btn"
-        >
+        {/* Updated Go Back Button */}
+        <button className="go-back-btn" onClick={handleBack}>
           <ArrowBack className="back-arrow-icon" />
-        </Button>
+        </button>
 
         <div className="prescription-button-wrapper">
           <Button

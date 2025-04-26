@@ -108,6 +108,41 @@
   margin-top: 1rem;
 }
 
+/* Go Back Button Styling */.go-back-btn {
+  position: absolute;
+  top: 50px; /* Adjust lower if needed */
+  left: 20px;
+  width: 45px; /* Smaller width */
+  height: 45px; /* Same as width = perfect circle */
+  background-color: transparent;
+  border: 2px solid var(--health-primary);
+  border-radius: 50%; /* Circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0; /* Very important! remove extra padding */
+}
+
+.go-back-btn:hover {
+  background: var(--health-primary);
+  border-color: var(--health-accent);
+  transform: scale(1.1);
+}
+
+.back-arrow-icon {
+  font-size: 20px; /* Smaller icon */
+  color: var(--health-primary);
+  transition: color 0.3s ease;
+}
+
+.go-back-btn:hover .back-arrow-icon {
+  color: #fff;
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
   .prescription-form {
     padding: 1.5rem;
