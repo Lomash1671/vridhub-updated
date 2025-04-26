@@ -1,8 +1,8 @@
 :root {
-  --health-primary: #7ec8e3;       /* Soft sky blue */
-  --health-accent: #a3d9c9;        /* Minty green */
-  --health-focus: #4db6ac;         /* Accent for focus */
-  --health-bg: #f0faff;            /* Very soft background */
+  --health-primary: #7ec8e3;
+  --health-accent: #a3d9c9;
+  --health-focus: #4db6ac;
+  --health-bg: #f0faff;
   --health-card: #ffffff;
   --health-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   --health-radius: 16px;
@@ -22,6 +22,7 @@ body {
   padding: 0;
 }
 
+/* Main container */
 .doctor-main {
   min-height: 100vh;
   padding: 4rem 1rem 2rem;
@@ -97,39 +98,7 @@ body {
   color: var(--text-light);
 }
 
-/* Buttons Section (Commented out as no longer used) */
-/*
-.doctor-buttons-wrapper {
-  width: 100%;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.center-button {
-  margin-top: 3rem;
-}
-
-.center-button button {
-  background: linear-gradient(135deg, var(--health-primary), var(--health-accent));
-  color: #fff;
-  font-size: var(--font-md);
-  padding: 0.9rem 2rem;
-  border-radius: 30px;
-  font-weight: 600;
-  box-shadow: 0 3px 12px rgba(126, 200, 227, 0.4);
-  transition: background 0.3s ease, transform 0.2s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.center-button button:hover {
-  background: linear-gradient(135deg, #65b3ce, #90d8c5);
-  transform: translateY(-2px);
-}
-*/
-
+/* Add Doctor Button */
 .doctor-button-wrapper {
   display: flex;
   justify-content: center;
@@ -183,10 +152,9 @@ body {
   outline: none;
 }
 
-/* Primary Button */
-.btn-primary {
-  background: linear-gradient(135deg, var(--health-primary), var(--health-accent));
-  color: #fff;
+/* Primary and Danger Buttons */
+.btn-primary,
+.btn-danger {
   padding: 0.9rem 2rem;
   font-size: var(--font-md);
   border: none;
@@ -194,6 +162,11 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--health-primary), var(--health-accent));
+  color: #fff;
   box-shadow: 0 3px 12px rgba(126, 200, 227, 0.4);
 }
 
@@ -202,17 +175,9 @@ body {
   transform: translateY(-2px);
 }
 
-/* Danger Button */
 .btn-danger {
   background-color: #e53935;
   color: #fff;
-  padding: 0.9rem 2rem;
-  font-size: var(--font-md);
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-danger:hover {
@@ -222,15 +187,16 @@ body {
 
 /* Go Back Button */
 .go-back-btn {
-  display: flex;
-  align-items: center;
-  padding: 8px;
   position: absolute;
   top: 20px;
   left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: transparent;
   border: 2px solid var(--health-primary);
   border-radius: 50%;
+  padding: 8px;
   cursor: pointer;
   z-index: 1000;
   transition: all 0.3s ease;
@@ -263,7 +229,7 @@ body {
     font-size: 2rem;
   }
 
-  .center-button button,
+  .futuristic-btn,
   .btn-primary,
   .btn-danger {
     width: 100%;
