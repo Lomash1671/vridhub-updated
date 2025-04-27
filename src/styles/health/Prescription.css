@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Added for absolute child positioning */
+  position: relative;
 }
 
 .prescription-title {
@@ -111,7 +111,7 @@
 
 /* Go Back Button Styling */
 .go-back-btn {
-  position: absolute;
+  position: fixed; /* Changed to fixed to avoid conflict */
   top: 85px; /* LOWERED button nicely */
   left: 20px;
   width: 45px;
@@ -152,5 +152,11 @@
 
   .prescription-title {
     font-size: 2rem;
+  }
+
+  /* Adjust Go Back Button for Small Screens */
+  .go-back-btn {
+    top: 15px;
+    left: 10px;
   }
 }

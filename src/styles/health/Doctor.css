@@ -188,7 +188,7 @@ body {
 /* Go Back Button */
 .go-back-btn {
   position: absolute;
-  top: 25px; /* corrected: now higher like Prescription page */
+  top: 15px; /* corrected: now higher like Prescription page */
   left: 20px;
   display: flex;
   align-items: center;
