@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative; /* Added for absolute child positioning */
 }
 
 .prescription-title {
@@ -108,22 +109,23 @@
   margin-top: 1rem;
 }
 
-/* Go Back Button Styling */.go-back-btn {
+/* Go Back Button Styling */
+.go-back-btn {
   position: absolute;
-  top: 50px; /* Adjust lower if needed */
+  top: 85px; /* LOWERED button nicely */
   left: 20px;
-  width: 45px; /* Smaller width */
-  height: 45px; /* Same as width = perfect circle */
+  width: 45px;
+  height: 45px;
   background-color: transparent;
   border: 2px solid var(--health-primary);
-  border-radius: 50%; /* Circle */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 0; /* Very important! remove extra padding */
+  padding: 0;
 }
 
 .go-back-btn:hover {
@@ -133,7 +135,7 @@
 }
 
 .back-arrow-icon {
-  font-size: 20px; /* Smaller icon */
+  font-size: 24px;
   color: var(--health-primary);
   transition: color 0.3s ease;
 }

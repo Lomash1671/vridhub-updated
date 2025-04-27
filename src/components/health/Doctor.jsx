@@ -85,16 +85,18 @@ const Doctor = () => {
       </Helmet>
 
       <main className="doctor-main">
-        {loading && (
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        )}
 
-        {/* Updated Go Back Button */}
+        {/* Updated Go Back Button - NOW POSITION HIGHER */}
         <button onClick={handleBack} className="go-back-btn">
           <ArrowBack className="back-arrow-icon" />
         </button>
+
+        {/* Loading Spinner */}
+        {loading && (
+          <Spinner animation="border" role="status" className="loading-spinner">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
 
         {/* Add Doctor Button */}
         <div className="doctor-button-wrapper">
@@ -107,6 +109,7 @@ const Doctor = () => {
           </Button>
         </div>
 
+        {/* Doctors List */}
         <div className="doctor-container">
           <h2 className="section-title">Your Consulted Doctors</h2>
           <div className="doctor-list">
@@ -123,7 +126,7 @@ const Doctor = () => {
           </div>
         </div>
 
-        {/* Dialog */}
+        {/* Dialog for Adding Doctor */}
         <Dialog open={openDialog} onClose={handleCloseDialog}>
           <DialogTitle>Add Doctor</DialogTitle>
           <DialogContent>
@@ -164,7 +167,7 @@ const Doctor = () => {
           </DialogActions>
         </Dialog>
 
-        {/* Snackbar */}
+        {/* Snackbar Notification */}
         <Snackbar
           open={openSnackbar}
           autoHideDuration={6000}
