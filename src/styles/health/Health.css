@@ -1,7 +1,7 @@
 /* Main Container */
 .health-container {
   font-family: 'Poppins', sans-serif;
-  padding: 2rem;
+  padding: 3rem;
   background: linear-gradient(to bottom right, #f0fdf4, #e3f2fd); /* Soothing health colors */
   min-height: 100vh;
 }
@@ -140,5 +140,17 @@
 
   .health-banner h2 {
     font-size: 1.8rem;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .health-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .health-banner p {
+    font-size: 1rem;
   }
 }

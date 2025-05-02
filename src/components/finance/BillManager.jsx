@@ -85,37 +85,30 @@ const BillManager = () => {
   return (
     <>
       <Helmet><title>Finance - Bill Manager</title></Helmet>
-
       <div className="bill-manager-container">
 
-        {/* Circular Go Back Button (top-left) */}
-        <Button
-          variant="outlined"
-          onClick={() => navigate('/finance')}
-          className="go-back-btn"
-          style={{
-            position: 'absolute',
-            top: '20px',
-            left: '20px',
-            borderRadius: '50%',
-            width: '50px',
-            height: '50px',
-            minWidth: 'unset',
-            padding: 0,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            border: '2px solid #1976d2',
-          }}
-        >
-          <span style={{ fontSize: '24px', color: '#1976d2' }}>&#8592;</span>
-        </Button>
+        {/* Go Back Button */}
+        <Box style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px' }}>
+          <Button
+            variant="outlined"
+            onClick={() => navigate('/finance')}
+            style={{
+              borderRadius: '50%',
+              width: '60px', height: '60px',
+              padding: '0',
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              border: '2px solid #1976d2',
+            }}
+          >
+            <span style={{ fontSize: '36px', color: '#1976d2' }}>&#8592;</span>
+          </Button>
+        </Box>
 
-        {/* Title Centered */}
-        <h1 style={{ textAlign: 'center', fontSize: '2.5rem', marginTop: '60px' }}>BILL MANAGER</h1>
+        {/* Title */}
+        <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Bill Manager</h1>
 
-        {/* Add Bill Button Centered */}
-        <Box style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', marginTop: '30px' }}>
+        {/* Add Bill Button */}
+        <Box style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <Button
             variant="contained"
             color="info"
@@ -128,6 +121,7 @@ const BillManager = () => {
           </Button>
         </Box>
 
+        {/* Table */}
         <TableContainer component={Paper} style={{ marginTop: '20px' }}>
           <Table>
             <TableHead>
@@ -156,7 +150,7 @@ const BillManager = () => {
           </Table>
         </TableContainer>
 
-        {/* Dialog Form */}
+        {/* Dialog */}
         <Dialog open={dialogOpen} onClose={resetForm}>
           <DialogTitle>{editId ? 'Edit Bill' : 'Add Bill'}</DialogTitle>
           <DialogContent>
@@ -180,13 +174,12 @@ const BillManager = () => {
           </DialogActions>
         </Dialog>
 
+        {/* Snackbar */}
         <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={() => setSnackbar({ ...snackbar, open: false })}>
           <Alert onClose={() => setSnackbar({ ...snackbar, open: false })} severity={snackbar.severity}>
             {snackbar.message}
           </Alert>
         </Snackbar>
-
-        <footer className="footer">© 2025 Elderly Companionship Assistance</footer>
       </div>
     </>
   );

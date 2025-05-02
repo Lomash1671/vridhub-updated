@@ -1,6 +1,6 @@
 /* Global styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f7f6;
@@ -20,11 +20,12 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.8);
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 /* Header Styling */
 .balance-header {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #1a365d;
     margin-bottom: 2rem;
     text-align: center;
@@ -79,6 +80,7 @@ body {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 12px;
     padding: 1rem;
+    transition: all 0.3s ease;
 }
 
 .transaction-table th {
@@ -125,41 +127,37 @@ body {
 
 /* Circular Go Back Button */
 .back-button {
-    font-size: 2rem; /* Increase font size */
-    padding: 0.8rem; /* Adjust padding for better size */
-    background-color: white;  /* White background */
+    font-size: 2.2rem; /* Increased font size */
+    padding: 1rem; /* Adjusted padding for better size */
+    background-color: #ffffff;  /* White background */
     color: #3498db;  /* Blue color for the arrow */
     border: 2px solid #3498db; /* Blue border */
     border-radius: 50%;  /* Make the button circular */
     cursor: pointer;
-    margin-top: 1rem; /* Position higher */
     position: fixed;
     top: 2rem; /* Position the button on the top-left */
     left: 2rem; /* Position the button on the left side */
-    z-index: 999; /* Keep it on top of other elements */
-    width: 60px;  /* Circular button size */
-    height: 60px; /* Circular button size */
+    width: 70px;  /* Circular button size */
+    height: 70px; /* Circular button size */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.2);
     transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-   
+    z-index: 999; /* Keep it on top of other elements */
 }
 
 /* Hover effect for the Go Back Button */
 .back-button:hover {
     background-color: #f1f1f1; /* Light gray background on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(52, 152, 219, 0.3);
 }
 
 /* Icon styling */
 .back-button .MuiSvgIcon-root {
     color: #3498db;  /* Blue color for the arrow */
-    font-size: 2rem; /* Adjust the arrow size */
+    font-size: 2.5rem; /* Adjust the arrow size */
 }
 
 /* Ensure the icon inside the button doesn't distort the circular shape */
@@ -181,7 +179,7 @@ body {
     .balance-container {
         border: 2px solid #000000;
     }
-    
+
     .transaction-table th {
         background-color: #2c3e50;
         color: #ffffff;
@@ -193,15 +191,21 @@ body {
     .balance-header {
         font-size: 1.8rem;
     }
-    
+
     .current-balance {
         font-size: 2rem;
     }
-    
+
     .transaction-table th,
     .transaction-table td {
         font-size: 1.2rem;
         padding: 1rem;
+    }
+
+    .back-button {
+        font-size: 1.8rem; /* Smaller font on mobile */
+        width: 60px;
+        height: 60px;
     }
 }
 
