@@ -85,35 +85,43 @@ const BillManager = () => {
   return (
     <>
       <Helmet><title>Finance - Bill Manager</title></Helmet>
+
       <div className="bill-manager-container">
-        <h1 className="title">Bill Manager</h1>
 
-        {/* Go Back Button on the Left */}
-        <Box className="action-buttons" style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '20px' }}>
-          <Button
-            variant="outlined"
-            onClick={() => navigate('/finance')}
-            className="go-back-btn"
-            style={{
-              borderRadius: '50%',
-              minWidth: '40px', height: '40px',
-              padding: '0',
-              display: 'flex', justifyContent: 'center', alignItems: 'center',
-              border: '2px solid #1976d2', // Blue border
-            }}
-            startIcon={<span style={{ fontSize: '20px', color: '#1976d2' }}>&#8592;</span>} // Arrow icon
-          />
-        </Box>
+        {/* Circular Go Back Button (top-left) */}
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/finance')}
+          className="go-back-btn"
+          style={{
+            position: 'absolute',
+            top: '20px',
+            left: '20px',
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            minWidth: 'unset',
+            padding: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '2px solid #1976d2',
+          }}
+        >
+          <span style={{ fontSize: '24px', color: '#1976d2' }}>&#8592;</span>
+        </Button>
 
-        {/* Centered and Larger Add Bill Button */}
-        <Box style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        {/* Title Centered */}
+        <h1 style={{ textAlign: 'center', fontSize: '2.5rem', marginTop: '60px' }}>BILL MANAGER</h1>
+
+        {/* Add Bill Button Centered */}
+        <Box style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', marginTop: '30px' }}>
           <Button
             variant="contained"
             color="info"
             onClick={() => openForm()}
-            className="add-bill-btn"
             style={{
-              fontSize: '18px', padding: '15px 30px', minWidth: '200px', // Increased font size and padding
+              fontSize: '18px', padding: '15px 30px', minWidth: '200px',
             }}
           >
             Add Bill
@@ -148,6 +156,7 @@ const BillManager = () => {
           </Table>
         </TableContainer>
 
+        {/* Dialog Form */}
         <Dialog open={dialogOpen} onClose={resetForm}>
           <DialogTitle>{editId ? 'Edit Bill' : 'Add Bill'}</DialogTitle>
           <DialogContent>
