@@ -11,19 +11,7 @@
     overflow: hidden;
 }
 
-.balance-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 200px;
-    background: linear-gradient(135deg, #3498db, #2ecc71);
-    opacity: 0.1;
-    z-index: 0;
-}
-
-/* Modernized Header with Enhanced Styling */
+/* Header Styling */
 .balance-header {
     font-size: 2rem;
     color: #1a365d;
@@ -48,7 +36,7 @@
     border-radius: 2px;
 }
 
-/* Enhanced Balance Display with Card Effect */
+/* Current Balance Display */
 .current-balance {
     font-size: 2.2rem;
     color: #2ecc71;
@@ -71,7 +59,7 @@
     box-shadow: 0 6px 20px rgba(46, 204, 113, 0.15);
 }
 
-/* Refined Transaction Table with Modern Look */
+/* Transaction Table Styling */
 .transaction-table {
     width: 100%;
     border-collapse: separate;
@@ -103,7 +91,7 @@
     line-height: 1.4;
 }
 
-/* Amount Indicators with Enhanced Visibility */
+/* Amount Indicators */
 .amount-positive {
     color: #27ae60;
     font-weight: 600;
@@ -124,39 +112,42 @@
     display: inline-block;
 }
 
-/* Modernized Button with Better Interaction */
+/* Circular Go Back Button */
 .back-button {
-    font-size: 1.2rem;
-    padding: 0.8rem 2rem;
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-    border: none;
-    border-radius: 8px;
+    font-size: 2rem; /* Increase font size */
+    padding: 0.8rem; /* Adjust padding for better size */
+    background-color: white;  /* White background */
+    color: #3498db;  /* Blue color for the arrow */
+    border: 2px solid #3498db; /* Blue border */
+    border-radius: 50%;  /* Make the button circular */
     cursor: pointer;
-    margin-top: 2rem;
-    font-weight: 500;
+    margin-top: 1rem; /* Position higher */
+    position: fixed;
+    top: 2rem; /* Position the button on the top-left */
+    left: 2rem; /* Position the button on the left side */
+    z-index: 999; /* Keep it on top of other elements */
+    width: 60px;  /* Circular button size */
+    height: 60px; /* Circular button size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+/* Hover effect for the Go Back Button */
 .back-button:hover {
-    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    background-color: #f1f1f1; /* Light gray background on hover */
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
 }
 
-/* Refined Alert Style */
-.alert {
-    font-size: 1.3rem;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 8px;
-    background-color: #fff5f5;
-    color: #c0392b;
-    border: 2px solid #fab1a0;
-    font-weight: 500;
+/* Icon styling */
+.back-button .MuiSvgIcon-root {
+    color: #d7dfe4;  /* Blue color for the arrow */
+    font-size: 2rem; /* Adjust the arrow size */
 }
 
 /* Accessibility Improvements */

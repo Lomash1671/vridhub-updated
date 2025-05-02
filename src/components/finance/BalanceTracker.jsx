@@ -1,21 +1,21 @@
-import  { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Ensure to import this for navigation
-import supabase from '../../../supabase'; // Adjust the path as needed
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import supabase from '../../../supabase';
 import { Helmet } from 'react-helmet';
-import '../../styles/finance/BalanceTracker.css'; // Import your CSS file
+import '../../styles/finance/BalanceTracker.css';
+import { ArrowBack } from '@mui/icons-material';
 
 const BalanceTracker = () => {
   const [currentBalance, setCurrentBalance] = useState(0);
   const [recentTransactions, setRecentTransactions] = useState([]);
-  const [,setAlert] = useState({ show: false, message: '', variant: '' });
-  const navigate = useNavigate(); // Initialize navigate for navigation
+  const [, setAlert] = useState({ show: false, message: '', variant: '' });
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchBalance();
     fetchRecentTransactions();
   }, []);
 
-  // Function to fetch the current balance from Supabase
   const fetchBalance = async () => {
     const { data, error } = await supabase
       .from('Balance')
@@ -29,7 +29,6 @@ const BalanceTracker = () => {
     }
   };
 
-  // Function to fetch recent transactions from Supabase
   const fetchRecentTransactions = async () => {
     const { data, error } = await supabase
       .from('transactions')
@@ -44,7 +43,6 @@ const BalanceTracker = () => {
     }
   };
 
-  // Handler for "Go Back" button
   const handleBack = () => {
     navigate('/finance');
   };
@@ -54,11 +52,19 @@ const BalanceTracker = () => {
       <Helmet>
         <title>Finance - Balance Tracker</title>
       </Helmet>
+
+      {/* Go Back Button placed outside the container */}
+      <button className="back-button" onClick={handleBack}>
+        <ArrowBack fontSize="inherit" />
+      </button>
+
       <div className="balance-container">
         <h1 className="balance-header">Balance Tracker</h1>
+
         <div className="current-balance">
           Current Balance: ${currentBalance.toFixed(2)}
         </div>
+
         <table className="transaction-table">
           <thead>
             <tr>
@@ -71,7 +77,9 @@ const BalanceTracker = () => {
             {recentTransactions.length > 0 ? (
               recentTransactions.map((transaction, index) => (
                 <tr key={index}>
-                  <td>{transaction.transaction_type.charAt(0).toUpperCase() + transaction.transaction_type.slice(1)}</td>
+                  <td>
+                    {transaction.transaction_type.charAt(0).toUpperCase() + transaction.transaction_type.slice(1)}
+                  </td>
                   <td>Rs. {parseFloat(transaction.amount).toFixed(2)}</td>
                   <td>{new Date(transaction.timestamp).toLocaleString()}</td>
                 </tr>
@@ -83,9 +91,6 @@ const BalanceTracker = () => {
             )}
           </tbody>
         </table>
-        <button className="back-button" onClick={handleBack}>
-          Go Back
-        </button>
       </div>
     </>
   );

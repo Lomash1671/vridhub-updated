@@ -1,139 +1,121 @@
-import  { useState, useEffect } from 'react';
-import supabase from '../../../supabase'; // Import Supabase client
-import { Snackbar, Alert, Button, TextField, Select, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useState, useEffect } from 'react';
+import supabase from '../../../supabase';
+import {
+  Snackbar, Alert, Button, TextField, Select, MenuItem,
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+  Paper, Box, Dialog, DialogActions, DialogContent, DialogTitle, IconButton
+} from '@mui/material';
+import { Edit, Delete } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import '../../styles/finance/BillManager.css';
 
 const BillManager = () => {
-  const [billName, setBillName] = useState('');
-  const [billAmount, setBillAmount] = useState('');
-  const [billDate, setBillDate] = useState('');
-  const [billStatus, setBillStatus] = useState('paid');
   const [bills, setBills] = useState([]);
-  const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
-  const [openDialog, setOpenDialog] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [currentBillId, setCurrentBillId] = useState(null);
+  const [form, setForm] = useState({ name: '', amount: '', date: '', status: 'paid' });
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+
   const navigate = useNavigate();
 
-
-  useEffect(() => {
-    fetchBills();
-  }, []);
+  useEffect(() => { fetchBills(); }, []);
 
   const fetchBills = async () => {
     const { data, error } = await supabase.from('BillManager').select('*');
-    if (error) {
-      setSnackbarMessage('Error fetching bills: ' + error.message);
-      setSnackbarSeverity('error');
-      setOpenSnackbar(true);
-    } else {
-      setBills(data);
-    }
+    if (error) showSnackbar('Error fetching bills: ' + error.message, 'error');
+    else setBills(data);
   };
 
-  const handleSaveBill = async () => {
-    if (!billName || !billAmount || !billDate || !billStatus) {
-      setSnackbarMessage('Please fill in all fields.');
-      setSnackbarSeverity('error');
-      setOpenSnackbar(true);
-      return;
-    }
+  const showSnackbar = (message, severity = 'success') => {
+    setSnackbar({ open: true, message, severity });
+  };
 
-    const newBill = {
-      billname: billName,
-      billamount: billAmount,
-      duedate: billDate,
-      status: billStatus,
+  const saveBill = async () => {
+    const { name, amount, date, status } = form;
+    if (!name || !amount || !date || !status) return showSnackbar('Please fill in all fields.', 'error');
+
+    const billData = {
+      billname: name, billamount: amount, duedate: date, status
     };
 
-    let data, error;
-    if (isEditMode) {
-      ({ data, error } = await supabase.from('BillManager').update(newBill).match({ id: currentBillId }));
+    let response;
+    if (editId) {
+      response = await supabase.from('BillManager').update(billData).eq('id', editId);
     } else {
-      ({ data, error } = await supabase.from('BillManager').insert([newBill]));
+      response = await supabase.from('BillManager').insert([billData]);
     }
 
-    if (error) {
-      setSnackbarMessage('Error saving bill: ' + error.message);
-      setSnackbarSeverity('error');
-    } else {
-      // Refresh the bill list after adding or updating a bill
-      if (data && data.length > 0) {
-        if (isEditMode) {
-          setBills(bills.map(bill => (bill.id === currentBillId ? data[0] : bill)));
-        } else {
-          setBills([...bills, data[0]]);
-        }
-      }
-      setBillName('');
-      setBillAmount('');
-      setBillDate('');
-      setBillStatus('paid');
-      setSnackbarMessage(`Bill ${isEditMode ? 'updated' : 'added'} successfully!`);
-      setSnackbarSeverity('success');
-    }
-    setOpenSnackbar(true);
-    setOpenDialog(false);
+    if (response.error) return showSnackbar('Error saving bill: ' + response.error.message, 'error');
+
+    fetchBills();
+    resetForm();
+    showSnackbar(`Bill ${editId ? 'updated' : 'added'} successfully!`);
   };
 
-  // Function to handle delete bill
-  const handleDeleteBill = async (id) => {
-    const { error } = await supabase.from('BillManager').delete().match({ id });
-    if (error) {
-      setSnackbarMessage('Error deleting bill: ' + error.message);
-      setSnackbarSeverity('error');
-    } else {
-      setBills(bills.filter(bill => bill.id !== id));
-      setSnackbarMessage('Bill deleted successfully!');
-      setSnackbarSeverity('success');
+  const deleteBill = async (id) => {
+    const { error } = await supabase.from('BillManager').delete().eq('id', id);
+    if (error) showSnackbar('Error deleting bill: ' + error.message, 'error');
+    else {
+      setBills(bills.filter(b => b.id !== id));
+      showSnackbar('Bill deleted successfully!');
     }
-    setOpenSnackbar(true);
   };
 
-  const openDialogForEdit = (bill = null) => {
+  const resetForm = () => {
+    setForm({ name: '', amount: '', date: '', status: 'paid' });
+    setEditId(null);
+    setDialogOpen(false);
+  };
+
+  const openForm = (bill = null) => {
     if (bill) {
-      setBillName(bill.billname);
-      setBillAmount(bill.billamount);
-      setBillDate(bill.duedate);
-      setBillStatus(bill.status);
-      setCurrentBillId(bill.id);
-      setIsEditMode(true);
+      setForm({ name: bill.billname, amount: bill.billamount, date: bill.duedate, status: bill.status });
+      setEditId(bill.id);
     } else {
-      setBillName('');
-      setBillAmount('');
-      setBillDate('');
-      setBillStatus('paid');
-      setIsEditMode(false);
+      resetForm();
     }
-    setOpenDialog(true);
+    setDialogOpen(true);
   };
 
-  const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
+  const statusColor = {
+    paid: '#4caf50', unpaid: '#f44336', pending: '#ff9800'
   };
-  const handleBack = () => {
-    navigate('/finance')
-  }
 
   return (
     <>
-      <Helmet>
-        <title>Finance - Bill Manager</title>
-      </Helmet>
+      <Helmet><title>Finance - Bill Manager</title></Helmet>
       <div className="bill-manager-container">
-        <h1 style={titleStyle}>Bill Manager</h1>
-        <Box sx={buttonsStyle}>
-          <Button variant="contained" color="primary" onClick={handleBack} style={buttonStyle}>
-            Go Back
-          </Button>
+        <h1 className="title">Bill Manager</h1>
 
-          <Button variant="contained" color="info" onClick={() => openDialogForEdit()} style={buttonStyle}>
+        {/* Go Back Button on the Left */}
+        <Box className="action-buttons" style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '20px' }}>
+          <Button
+            variant="outlined"
+            onClick={() => navigate('/finance')}
+            className="go-back-btn"
+            style={{
+              borderRadius: '50%',
+              minWidth: '40px', height: '40px',
+              padding: '0',
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              border: '2px solid #1976d2', // Blue border
+            }}
+            startIcon={<span style={{ fontSize: '20px', color: '#1976d2' }}>&#8592;</span>} // Arrow icon
+          />
+        </Box>
+
+        {/* Centered and Larger Add Bill Button */}
+        <Box style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <Button
+            variant="contained"
+            color="info"
+            onClick={() => openForm()}
+            className="add-bill-btn"
+            style={{
+              fontSize: '18px', padding: '15px 30px', minWidth: '200px', // Increased font size and padding
+            }}
+          >
             Add Bill
           </Button>
         </Box>
@@ -142,29 +124,23 @@ const BillManager = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={thTdStyle}>Bill Name</TableCell>
-                <TableCell style={thTdStyle}>Amount</TableCell>
-                <TableCell style={thTdStyle}>Due Date</TableCell>
-                <TableCell style={thTdStyle}>Status</TableCell>
-                <TableCell style={thTdStyle}>Actions</TableCell>
+                {['Bill Name', 'Amount', 'Due Date', 'Status', 'Actions'].map(header => (
+                  <TableCell key={header} align="center">{header}</TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
               {bills.map((bill) => (
                 <TableRow key={bill.id}>
-                  <TableCell style={thTdStyle}>{bill.billname}</TableCell>
-                  <TableCell style={thTdStyle}>{bill.billamount}</TableCell>
-                  <TableCell style={thTdStyle}>{bill.duedate}</TableCell>
-                  <TableCell style={{ ...thTdStyle, ...statusStyle, ...statusClasses[getStatusClass(bill.status)] }}>
+                  <TableCell align="center">{bill.billname}</TableCell>
+                  <TableCell align="center">{bill.billamount}</TableCell>
+                  <TableCell align="center">{bill.duedate}</TableCell>
+                  <TableCell align="center" style={{ color: statusColor[bill.status] }}>
                     {bill.status.charAt(0).toUpperCase() + bill.status.slice(1)}
                   </TableCell>
-                  <TableCell style={thTdStyle}>
-                    <IconButton onClick={() => openDialogForEdit(bill)} color="primary">
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={() => handleDeleteBill(bill.id)} color="secondary">
-                      <DeleteIcon />
-                    </IconButton>
+                  <TableCell align="center">
+                    <IconButton onClick={() => openForm(bill)}><Edit /></IconButton>
+                    <IconButton onClick={() => deleteBill(bill.id)}><Delete /></IconButton>
                   </TableCell>
                 </TableRow>
               ))}
@@ -172,127 +148,39 @@ const BillManager = () => {
           </Table>
         </TableContainer>
 
-        <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-          <DialogTitle>{isEditMode ? 'Edit Bill' : 'Add Bill'}</DialogTitle>
+        <Dialog open={dialogOpen} onClose={resetForm}>
+          <DialogTitle>{editId ? 'Edit Bill' : 'Add Bill'}</DialogTitle>
           <DialogContent>
-            <TextField
-              label="Bill Name"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              value={billName}
-              onChange={(e) => setBillName(e.target.value)}
-              required
-            />
-            <TextField
-              label="Amount"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              value={billAmount}
-              onChange={(e) => setBillAmount(e.target.value)}
-              required
-            />
-            <TextField
-              label="Due Date"
-              type="date"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              value={billDate}
-              onChange={(e) => setBillDate(e.target.value)}
-              required
-              InputLabelProps={{ shrink: true }}
-            />
-            <Select
-              label="Status"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              value={billStatus}
-              onChange={(e) => setBillStatus(e.target.value)}
-            >
+            <TextField label="Bill Name" fullWidth margin="dense"
+              value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            <TextField label="Amount" fullWidth margin="dense"
+              value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} />
+            <TextField label="Due Date" type="date" fullWidth margin="dense"
+              value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })}
+              InputLabelProps={{ shrink: true }} />
+            <Select fullWidth margin="dense" value={form.status}
+              onChange={(e) => setForm({ ...form, status: e.target.value })}>
               <MenuItem value="paid">Paid</MenuItem>
               <MenuItem value="unpaid">Unpaid</MenuItem>
               <MenuItem value="pending">Pending</MenuItem>
             </Select>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => setOpenDialog(false)} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleSaveBill} color="primary">
-              Save
-            </Button>
+            <Button onClick={resetForm}>Cancel</Button>
+            <Button onClick={saveBill} variant="contained" color="primary">Save</Button>
           </DialogActions>
         </Dialog>
 
-        <Snackbar
-          open={openSnackbar}
-          autoHideDuration={6000}
-          onClose={handleCloseSnackbar}
-          message={snackbarMessage}
-          action={
-            <Button color="inherit" onClick={handleCloseSnackbar}>
-              Close
-            </Button>
-          }
-        >
-          <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}>
-            {snackbarMessage}
+        <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={() => setSnackbar({ ...snackbar, open: false })}>
+          <Alert onClose={() => setSnackbar({ ...snackbar, open: false })} severity={snackbar.severity}>
+            {snackbar.message}
           </Alert>
         </Snackbar>
+
+        <footer className="footer">© 2025 Elderly Companionship Assistance</footer>
       </div>
     </>
   );
-};
-
-// Inline styles
-
-
-
-const buttonsStyle = {
-  marginTop: '20px',
-  gap: '5px',
-  display: 'flex',
-  marginBottom: '10px',
-};
-
-const titleStyle = {
-  textAlign: 'center',
-  color: '#6a1b9a',
-};
-
-const buttonStyle = {
-  marginBottom: '20px',
-};
-
-const thTdStyle = {
-  textAlign: 'center',
-  color: '#333',
-};
-
-const statusStyle = {
-  textTransform: 'capitalize',
-};
-
-const statusClasses = {
-  paid: { color: '#4caf50' }, // Green
-  unpaid: { color: '#f44336' }, // Red
-  pending: { color: '#ff9800' }, // Orange
-};
-
-const getStatusClass = (status) => {
-  switch (status) {
-    case 'paid':
-      return 'paid';
-    case 'unpaid':
-      return 'unpaid';
-    case 'pending':
-      return 'pending';
-    default:
-      return '';
-  }
 };
 
 export default BillManager;
