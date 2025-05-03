@@ -47,6 +47,11 @@ const BalanceTracker = () => {
     navigate('/finance');
   };
 
+  const handleAddMoney = () => {
+    // You can navigate to another page to add money or handle the logic here
+    alert("Add money functionality will be implemented here.");
+  };
+
   return (
     <>
       <Helmet>
@@ -59,7 +64,12 @@ const BalanceTracker = () => {
       </button>
 
       <div className="balance-container">
-        <h1 className="balance-header">Balance Tracker</h1>
+        <div className="balance-header-container">
+          <h1 className="balance-header">Balance Tracker</h1>
+          <button className="add-money-button" onClick={handleAddMoney}>
+            Add Money
+          </button>
+        </div>
 
         <div className="current-balance">
           Current Balance: ${currentBalance.toFixed(2)}

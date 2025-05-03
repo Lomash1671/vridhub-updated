@@ -36,6 +36,32 @@
     border-radius: 2px;
 }
 
+/* Header container for balance and button */
+.balance-header-container {
+    display: flex;
+    justify-content: space-between; /* Space between title and button */
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Add Money Button */
+.add-money-button {
+    background-color: #43a047;
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.add-money-button:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+
 /* Current Balance Display */
 .current-balance {
     font-size: 2.2rem;

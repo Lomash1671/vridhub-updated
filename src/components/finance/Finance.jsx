@@ -45,6 +45,10 @@ const Finance = () => {
       </Helmet>
       
       <h1 className="finance-header">Financial Management Hub</h1>
+
+      <p className="finance-subtext">
+        Secure Finances, Peace of Mind. Easily track your balance, manage expenses, and stay in control with tools designed for comfort, clarity, and confidence.
+      </p>
       
       <div className="finance-grid">
         {tilesData.map((tile, index) => (
@@ -79,7 +83,6 @@ const Finance = () => {
       </div>
       
       <Outlet />
-      
     </div>
   );
 };

@@ -88,21 +88,11 @@ const BillManager = () => {
       <div className="bill-manager-container">
 
         {/* Go Back Button */}
-        <Box style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px' }}>
-          <Button
-            variant="outlined"
-            onClick={() => navigate('/finance')}
-            style={{
-              borderRadius: '50%',
-              width: '60px', height: '60px',
-              padding: '0',
-              display: 'flex', justifyContent: 'center', alignItems: 'center',
-              border: '2px solid #1976d2',
-            }}
-          >
-            <span style={{ fontSize: '36px', color: '#1976d2' }}>&#8592;</span>
-          </Button>
-        </Box>
+        <button className="back-button" onClick={() => navigate('/finance')}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2c7b47" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5m7-7l-7 7 7 7" />
+          </svg>
+        </button>
 
         {/* Title */}
         <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Bill Manager</h1>

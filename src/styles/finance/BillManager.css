@@ -1,20 +1,20 @@
-/* Global styles */
+/* Global Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
+    background-color: #eafaf1;  /* Soft light green background */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Senior-friendly Container with Modern Styling */
-.balance-container {
+/* Main Bill Manager Container */
+.bill-manager-container {
     padding: 2.5rem;
     max-width: 1200px;
     margin: 2rem auto;
-    background: linear-gradient(145deg, #ffffff, #f0f2f5);
+    background: linear-gradient(145deg, #ffffff, #eafaf1);
     border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.8);
@@ -24,19 +24,19 @@ body {
 }
 
 /* Header Styling */
-.balance-header {
+.bill-manager-container h1 {
     font-size: 2.5rem;
-    color: #1a365d;
+    color: #2c7b47;  /* Dark green for header */
     margin-bottom: 2rem;
     text-align: center;
     font-weight: 700;
     letter-spacing: 0.5px;
-    position: relative;
     text-transform: uppercase;
     padding-bottom: 1rem;
+    position: relative;
 }
 
-.balance-header::after {
+.bill-manager-container h1::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -44,34 +44,33 @@ body {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(to right, #3498db, #2ecc71);
+    background: linear-gradient(to right, #27ae60, #2ecc71);  /* Green gradient */
     border-radius: 2px;
 }
 
-/* Current Balance Display */
-.current-balance {
-    font-size: 2.2rem;
-    color: #2ecc71;
-    text-align: center;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+/* Button Styles */
+button,
+.MuiButton-root {
     border-radius: 12px;
-    margin: 1rem auto 2rem;
-    border: 2px solid rgba(46, 204, 113, 0.3);
-    font-weight: 600;
-    line-height: 1.3;
+    transition: background-color 0.3s ease;
+}
+
+.MuiButton-root:hover {
+    background-color: #27ae60;  /* Green button hover */
+}
+
+/* Bill Form Dialog Styling */
+.MuiDialog-paper {
+    border-radius: 12px;
     transition: all 0.3s ease;
-    max-width: 400px;
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.1);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.current-balance:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.15);
+.MuiDialogActions-root {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Transaction Table Styling */
+/* Table Styling */
 .transaction-table {
     width: 100%;
     border-collapse: separate;
@@ -85,9 +84,9 @@ body {
 
 .transaction-table th {
     font-size: 1.2rem;
-    color: #2c3e50;
+    color: #2c7b47;  /* Dark green for table headers */
     padding: 1rem 1.5rem;
-    background: rgba(52, 152, 219, 0.1);
+    background: rgba(39, 174, 96, 0.1);  /* Soft light green */
     text-align: left;
     font-weight: 600;
     border-radius: 8px;
@@ -102,86 +101,102 @@ body {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     line-height: 1.4;
+    transition: all 0.2s ease;
 }
 
-/* Amount Indicators */
+.transaction-table td:hover {
+    background-color: rgba(39, 174, 96, 0.05);  /* Soft green hover effect */
+}
+
+/* Amount Indicators (Positive and Negative) */
 .amount-positive {
-    color: #27ae60;
+    color: #2ecc71;  /* Green for positive amounts */
     font-weight: 600;
     font-size: 1.2rem;
     padding: 0.3rem 0.8rem;
-    background: rgba(39, 174, 96, 0.1);
+    background: rgba(46, 204, 113, 0.1);  /* Light green background */
     border-radius: 4px;
     display: inline-block;
 }
 
 .amount-negative {
-    color: #e74c3c;
+    color: #e74c3c;  /* Red for negative amounts */
     font-weight: 600;
     font-size: 1.2rem;
     padding: 0.3rem 0.8rem;
-    background: rgba(231, 76, 60, 0.1);
+    background: rgba(231, 76, 60, 0.1);  /* Light red background */
     border-radius: 4px;
     display: inline-block;
 }
 
+/* Snackbar Styles */
+.MuiSnackbar-root {
+    max-width: 500px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.MuiAlert-root {
+    background-color: #2ecc71;  /* Green Snackbar */
+    color: white;
+    padding: 16px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
 /* Circular Go Back Button */
 .back-button {
-    font-size: 2.2rem; /* Increased font size */
-    padding: 1rem; /* Adjusted padding for better size */
-    background-color: #ffffff;  /* White background */
-    color: #3498db;  /* Blue color for the arrow */
-    border: 2px solid #3498db; /* Blue border */
-    border-radius: 50%;  /* Make the button circular */
+    font-size: 2.2rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    color: #2c7b47;  /* Green for back button */
+    border: 2px solid #2c7b47;  /* Dark green border */
+    border-radius: 50%;
     cursor: pointer;
     position: fixed;
-    top: 2rem; /* Position the button on the top-left */
-    left: 2rem; /* Position the button on the left side */
-    width: 70px;  /* Circular button size */
-    height: 70px; /* Circular button size */
+    top: 2rem;
+    left: 2rem;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.2);
     transition: all 0.3s ease;
-    z-index: 999; /* Keep it on top of other elements */
+    z-index: 999;
 }
 
-/* Hover effect for the Go Back Button */
 .back-button:hover {
-    background-color: #f1f1f1; /* Light gray background on hover */
+    background-color: #f1f1f1;
     transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 6px 25px rgba(39, 174, 96, 0.3);
 }
 
-/* Icon styling */
 .back-button .MuiSvgIcon-root {
-    color: #3498db;  /* Blue color for the arrow */
-    font-size: 2.5rem; /* Adjust the arrow size */
+    color: #2c7b47;  /* Green icon color */
+    font-size: 2.5rem;
 }
 
-/* Ensure the icon inside the button doesn't distort the circular shape */
 .back-button svg {
     width: 100%;
     height: 100%;
     display: block;
 }
 
-/* Accessibility Improvements */
+/* Accessibility Enhancements */
 @media (prefers-reduced-motion: reduce) {
     * {
         transition: none !important;
     }
 }
 
-/* High Contrast Mode */
 @media (prefers-contrast: high) {
     .balance-container {
         border: 2px solid #000000;
     }
 
     .transaction-table th {
-        background-color: #2c3e50;
+        background-color: #2c7b47;  /* Dark green for high contrast */
         color: #ffffff;
     }
 }
@@ -198,12 +213,12 @@ body {
 
     .transaction-table th,
     .transaction-table td {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 1rem;
     }
 
     .back-button {
-        font-size: 1.8rem; /* Smaller font on mobile */
+        font-size: 1.8rem;
         width: 60px;
         height: 60px;
     }
@@ -211,6 +226,6 @@ body {
 
 /* Focus States */
 *:focus {
-    outline: 3px solid #3498db;
+    outline: 3px solid #2ecc71;  /* Green focus outline */
     outline-offset: 2px;
 }
