@@ -5,20 +5,9 @@ import { Helmet } from 'react-helmet';
 import "../../styles/transport/BookCab.css"; // Import your CSS styles
 
 const BookCab = () => {
-  const [contrast, setContrast] = useState(false); // State for dark mode
-  const [largerText, setLargerText] = useState(false); // State for larger text
   const [message, setMessage] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // Can be 'success' or 'error'
-
-  const toggleContrast = () => {
-    setContrast(!contrast);
-  };
-
-  const toggleLargerText = () => {
-    setLargerText(!largerText);
-  };
-
   const handleBooking = async (event) => {
     event.preventDefault();
 
@@ -70,9 +59,7 @@ const BookCab = () => {
         <title>Transport - Book Cab</title>
       </Helmet>
       <div
-        className={`${
-          contrast ? 'dark-mode' : ''
-        } ${largerText ? 'larger-text' : ''}`}
+      
       >
         <header>
           Elderly-Friendly Transport Booking
@@ -89,14 +76,7 @@ const BookCab = () => {
         </nav>
 
         <main>
-          <div className="button-container">
-            <button onClick={toggleContrast}>
-              Toggle High Contrast
-            </button>
-            <button onClick={toggleLargerText}>
-              Toggle Larger Text
-            </button>
-          </div>
+         
 
           <section id="book-cab">
             <h2>Book a Cab</h2>
