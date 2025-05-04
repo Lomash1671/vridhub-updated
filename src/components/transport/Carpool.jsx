@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import { Helmet } from 'react-helmet';
@@ -32,19 +32,13 @@ const Carpool = () => {
         </header>
 
         <nav className="carpool-nav">
-          <a href="#home">Home</a>
           <a href="#features">Carpool Options</a>
-          <a href="#accessibility">Accessibility</a>
-          <a href="#contact">Contact Us</a>
         </nav>
-
-        <section className="carpool-hero">
-          <h1>Connecting Seniors, One Ride at a Time</h1>
-        </section>
 
         <section className="carpool-content" id="features">
           <h2>Carpooling Options</h2>
           <div className="carpool-features">
+            {/* Join a Carpool Section */}
             <div className="carpool-feature-item">
               <div className="carpool-feature-image join-image"></div>
               <h3>Join a Carpool</h3>
@@ -57,6 +51,7 @@ const Carpool = () => {
                 <button onClick={() => handleRideAction('success')}>Find a Ride</button>
               </div>
             </div>
+            {/* Offer a Ride Section */}
             <div className="carpool-feature-item">
               <div className="carpool-feature-image offer-image"></div>
               <h3>Offer a Ride</h3>
@@ -72,6 +67,7 @@ const Carpool = () => {
           </div>
         </section>
 
+        {/* Toast Notifications */}
         <ToastContainer className="p-3" position="top-end">
           <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg={toastVariant}>
             <Toast.Header>
@@ -80,10 +76,6 @@ const Carpool = () => {
             <Toast.Body>{toastMessage}</Toast.Body>
           </Toast>
         </ToastContainer>
-
-        <footer className="carpool-footer">
-          <p>&copy; 2025 Vridhhub. All rights reserved.</p>
-        </footer>
       </div>
     </>
   );
